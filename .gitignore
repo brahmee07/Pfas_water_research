@@ -1,10 +1,4 @@
 .DS_Store
-updated_data/UCMR5_All.txt
-updated_data/UCMR5_ZIPCodes.txt
-updated_data/UCMR5_AddtlDataElem.txt
-updated_data/.ipynb_checkpoints/
-current_work/UCMR5_All.txt
-current_work/UCMR5_ZIPCodes.txt
-current_work/UCMR5_AddtlDataElem.txt
+.ipynb_checkpoints/
 current_work/ucmr5-occurrence-data/
 current_work/SDWA_PUB_WATER_SYSTEMS.xlsx

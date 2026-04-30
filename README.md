@@ -88,13 +88,14 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 ---
 
 ### 4. `03_cost_risk_treatment_analysis.ipynb`
-**What it does:** Estimates the **national cost of treatment** and **reduction in human exposure** (measured in nanograms per day, ng/day) if water systems were required to treat PFOA/PFOS down to five different regulatory thresholds.
+**What it does:** Reads `ep_table.csv` and `final_national_impact.csv` to estimate national treatment costs and exposure reduction across five regulatory thresholds. Flags each entry point as exceeding each threshold (PFOA or PFOS). Calculates exposure per day (ng/day) per entry point assuming 2 L/day water intake. Maps national EP counts from the scaling table to annualized cost per EP (from Corona memo, by population bin). Also computes cost-effectiveness as $/ng of PFAS removed annually.
 
 **Thresholds analyzed:** 4, 8, 12, 20, and 40 ng/L
 
-**Outputs:**
-- Treatment cost estimates by population size bin and threshold
-- National exposure reduction estimates (ng/day) per threshold
+**Key outputs:**
+- National annualized treatment costs by threshold: $3,396M (4 ng/L) → $109M (40 ng/L)
+- Annual exposure reduction estimates (ng/year) per threshold
+- Cost-effectiveness ratio ($/ng of PFAS removed)
 
 ---
 

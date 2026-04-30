@@ -127,4 +127,4 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 
 ---
 
-*For questions about this analysis, please contact the project author.*
+

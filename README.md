@@ -97,6 +97,9 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 **Outputs:**
 - Treatment cost estimates by population size bin and threshold
 - National exposure reduction estimates (ng/day) per threshold
+- `figure_1b_national_concentration.png` — national PFAS concentration distribution
+- `figure3A_linear.png` / `figure3A_log.png` — cost-risk curves (linear and log scale)
+- `national_cost_risk_curve.png` — national cost vs. exposure reduction curve
 
 ---
 
@@ -108,6 +111,9 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 | `ep_table.csv` | `02_analysis.ipynb` | Entry point-level summary with population |
 | `final_national_impact.csv` | `04_scaling.ipynb` | National scaling estimates by threshold |
 | Cost & exposure tables | `03_cost_risk_treatment_analysis.ipynb` | Treatment costs and exposure reduction |
+| `figure_1b_national_concentration.png` | `03_cost_risk_treatment_analysis.ipynb` | National PFAS concentration distribution |
+| `figure3A_linear.png` / `figure3A_log.png` | `03_cost_risk_treatment_analysis.ipynb` | Cost-risk curves (linear and log scale) |
+| `national_cost_risk_curve.png` | `03_cost_risk_treatment_analysis.ipynb` | National cost vs. exposure reduction curve |
 
 ---
 

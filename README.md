@@ -117,14 +117,7 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 
 ---
 
-## Key Methods Notes
 
-- **Entry point (EP):** The physical location where water enters a distribution system. One water system may have multiple EPs.
-- **Detection vs. exceedance:** A "detection" means PFOA or PFOS was measurably present. An "exceedance" means the level was above a specific regulatory threshold.
-- **Scaling approach:** UCMR5 monitored a nationally representative but incomplete sample of water systems. National estimates are produced by applying UCMR5 detection and exceedance rates to the full SDWIS national inventory.
-- **Exposure reduction:** Estimated as the average concentration reduction achievable per entry point (from UCMR5 data) multiplied by the estimated number of entry points nationally that would need treatment at each threshold.
-
----
 
 ## Dependencies
 

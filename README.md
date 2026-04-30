@@ -60,32 +60,30 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 **Output:** `ucmr5_pfoa_pfos.csv`
 - 128,400 PFOA/PFOS samples
 - 8,648 detections above the reporting limit
-- 26,148 unique entry points (EPs) — the individual sampling locations within water systems
 
 ---
 
 ### 2. `02_analysis.ipynb`
-**What it does:** Summarizes contamination at the **entry point level** — the point where treated water enters the distribution system. Merges contamination data with SDWIS population data to determine how many people are served by each entry point. Groups water systems into population size bins for cost estimation.
+**What it does:** Builds an entry point-level summary by averaging PFOA and PFOS concentrations across all sample events per entry point (identified by PWSID + FacilityID). Removes one PWS (NV0000167) with a missing FacilityID. Merges with SDWIS population data to determine how many people are served by each entry point. Groups water systems into population size bins for cost estimation.
 
 **Key assumption:** When a water system has multiple entry points, the system's total population is divided equally across them.
 
 **Output:** `ep_table.csv`
-- Entry point-level summary table
-- Includes population served, detected concentrations, and population size bin
+- 26,438 unique entry points
+- Includes average PFOA and PFOS concentration per EP, population served, and population size bin
 
 ---
 
 ### 3. `04_scaling.ipynb`
-**What it does:** Scales findings from the UCMR5 sample up to **national estimates**. Because UCMR5 only monitored a subset of all U.S. water systems, this step uses SDWIS national counts and known relationships between system size and entry points to estimate how many entry points nationally would exceed each regulatory threshold.
+**What it does:** Scales UCMR5 findings up to national estimates. Filters SDWIS to active Community Water Systems (CWS) only and counts them by population bin to establish the national universe (49,369 systems total). Reads `ep_table.csv` to calculate exceedance percentages per population bin for each threshold. Applies the formula: National PWS count × average EPs per PWS (M) × exceedance rate per bin, summed across bins.
 
 **Key assumptions:**
-- On average, each public water system has **2.57 entry points** (derived from UCMR5 data)
-- UCMR5 exceedance rates are applied to the full national inventory of water systems from SDWIS
-- National exposure reduction = *average reduction per entry point* (from UCMR5) × *estimated number of entry points nationally that would require treatment*
+- Average EPs per PWS (M) = **2.5749** — derived from ep_table.csv (26,148 EPs / 10,155 PWS)
+- Exceedance is defined as PFOA **or** PFOS exceeding the threshold at a given entry point
+- National universe = active CWS from SDWIS, binned by population size
 
 **Output:** `final_national_impact.csv`
-- National scaling estimates by regulatory threshold
-- Estimated number of entry points and people affected at each threshold
+- Estimated number of EPs requiring treatment per population bin, for each of the 5 thresholds (4, 8, 12, 20, 40 ng/L)
 
 ---
 

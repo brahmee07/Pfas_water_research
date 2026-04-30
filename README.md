@@ -55,11 +55,11 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 ---
 
 ### 1. `01_filter_clean.ipynb`
-**What it does:** Loads the raw UCMR5 dataset and filters it down to PFOA and PFOS measurements only. Removes incomplete or unusable records and standardizes the data for analysis.
+**What it does:** Loads the full UCMR5 dataset (1,928,117 rows across all contaminants) and filters it down to PFOA and PFOS measurements only. Drops three columns that are entirely empty in the UCMR5 dataset. Exports the cleaned PFOA/PFOS-only dataset for use in subsequent notebooks.
 
 **Output:** `ucmr5_pfoa_pfos.csv`
-- 121,260 PFOA/PFOS samples
-- 8,167 detections above the reporting limit
+- 128,400 PFOA/PFOS samples
+- 8,648 detections above the reporting limit
 - 26,148 unique entry points (EPs) — the individual sampling locations within water systems
 
 ---
@@ -97,9 +97,6 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 **Outputs:**
 - Treatment cost estimates by population size bin and threshold
 - National exposure reduction estimates (ng/day) per threshold
-- `figure_1b_national_concentration.png` — national PFAS concentration distribution
-- `figure3A_linear.png` / `figure3A_log.png` — cost-risk curves (linear and log scale)
-- `national_cost_risk_curve.png` — national cost vs. exposure reduction curve
 
 ---
 
@@ -111,13 +108,17 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 | `ep_table.csv` | `02_analysis.ipynb` | Entry point-level summary with population |
 | `final_national_impact.csv` | `04_scaling.ipynb` | National scaling estimates by threshold |
 | Cost & exposure tables | `03_cost_risk_treatment_analysis.ipynb` | Treatment costs and exposure reduction |
-| `figure_1b_national_concentration.png` | `03_cost_risk_treatment_analysis.ipynb` | National PFAS concentration distribution |
-| `figure3A_linear.png` / `figure3A_log.png` | `03_cost_risk_treatment_analysis.ipynb` | Cost-risk curves (linear and log scale) |
-| `national_cost_risk_curve.png` | `03_cost_risk_treatment_analysis.ipynb` | National cost vs. exposure reduction curve |
 
 ---
 
+## Key Methods Notes
 
+- **Entry point (EP):** The physical location where water enters a distribution system. One water system may have multiple EPs.
+- **Detection vs. exceedance:** A "detection" means PFOA or PFOS was measurably present. An "exceedance" means the level was above a specific regulatory threshold.
+- **Scaling approach:** UCMR5 monitored a nationally representative but incomplete sample of water systems. National estimates are produced by applying UCMR5 detection and exceedance rates to the full SDWIS national inventory.
+- **Exposure reduction:** Estimated as the average concentration reduction achievable per entry point (from UCMR5 data) multiplied by the estimated number of entry points nationally that would need treatment at each threshold.
+
+---
 
 ## Dependencies
 
@@ -126,4 +127,4 @@ All active notebooks are in the `current_work/` folder. The analysis runs sequen
 
 ---
 
-
+*For questions about this analysis, please contact the project author.*

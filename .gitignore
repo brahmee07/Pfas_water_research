@@ -2,3 +2,10 @@
 .ipynb_checkpoints/
 current_work/ucmr5-occurrence-data/
 current_work/SDWA_PUB_WATER_SYSTEMS.xlsx
+
+# Raw and intermediate data
+archive/initial_data_set/SDWA_PUB_WATER_SYSTEMS.xlsx
+archive/initial_data_set/ucmr5_pfoa_pfos_clean.csv
+current_work/ucmr5_pfoa_pfos.csv
+current_work/ucmr5-occurrence-data/
+current_work/SDWA_PUB_WATER_SYSTEMS.xlsx

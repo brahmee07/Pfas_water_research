@@ -24,23 +24,40 @@ The EPA's Unregulated Contaminant Monitoring Rule 5 (UCMR5) required public wate
 
 The January 2026 release represents approximately 95% of total expected results. Data are publicly available via the [UCMR 5 Data Finder](https://www.epa.gov/dwucmr/occurrence-data-unregulated-contaminant-monitoring-rule).
 
+## Getting the Data
+
+The two raw input files are not included in the repository and must be downloaded before running the notebooks.
+
+**1. UCMR5 occurrence data**
+1. Go to the [UCMR 5 Data Finder](https://www.epa.gov/dwucmr/occurrence-data-unregulated-contaminant-monitoring-rule)
+2. Under "UCMR 5 (2023–2025) Occurrence Data", download **UCMR 5 Occurrence Data Text Files (zip)**
+3. Extract the zip — the file you need is `UCMR5_All.txt` (note: this file is too large to open in Excel)
+4. Place it so the path is: `current_work/ucmr5-occurrence-data/UCMR5_All.txt`
+
+**2. SDWIS public water systems data**
+1. Go to the [SDWA Data Downloads page](https://echo.epa.gov/tools/data-downloads/sdwa-download-summary)
+2. Download the SDWA ZIP file
+3. Extract it and locate `SDWA_PUB_WATER_SYSTEMS.csv`
+4. Open it in Excel and save as `SDWA_PUB_WATER_SYSTEMS.xlsx`
+5. Place it at: `current_work/SDWA_PUB_WATER_SYSTEMS.xlsx`
+
 ## Repository Structure
 
 ```
 project/
-├── current_work/          # Active analysis (entry point level) ← use this
+├── current_work/                        # Active analysis (entry point level) ← use this
 │   ├── 01_filter_clean.ipynb
 │   ├── 02_analysis.ipynb
-│   ├── 03_cost_risk_treatment_analysis.ipynb
-│   └── 04_scaling.ipynb
-└── archive/               # Superseded work, kept for reference only
+│   ├── 03_scaling.ipynb
+│   └── 04_cost_risk_treatment_analysis.ipynb
+└── archive/                             # Superseded work, kept for reference only
     ├── (PWSID-level analysis)
     └── (old scaling method)
 ```
 
-## Notebooks
+## Running the Notebooks
 
-All notebooks are in the `current_work/` folder. Run them in order: 01, 02, 04, then 03.
+All notebooks must be run from inside the `current_work/` directory. Run them in order: 01 → 02 → 03 → 04.
 
 ### 1. `01_filter_clean.ipynb`
 
@@ -56,13 +73,13 @@ Population is divided equally across entry points for systems with multiple entr
 
 Output: `ep_table.csv` with 26,438 unique entry points including average concentrations, population served, and population bin.
 
-### 3. `04_scaling.ipynb`
+### 3. `03_scaling.ipynb`
 
-Scales UCMR5 findings to national estimates. Filters SDWIS to active Community Water Systems and counts them by population bin (49,369 systems total). Calculates the percent of entry points exceeding each threshold per bin, then applies: National PWS count x average EPs per PWS (2.5749) x exceedance rate per bin.
+Scales UCMR5 findings to national estimates. Filters SDWIS to active Community Water Systems and counts them by population bin (49,369 systems total). Calculates the percent of entry points exceeding each threshold per bin, then applies: National PWS count × average EPs per PWS (2.5749) × exceedance rate per bin.
 
 Output: `final_national_impact.csv` with estimated EPs requiring treatment per bin for thresholds of 4, 8, 12, 20, and 40 ng/L.
 
-### 4. `03_cost_risk_treatment_analysis.ipynb`
+### 4. `04_cost_risk_treatment_analysis.ipynb`
 
 Uses `ep_table.csv` and `final_national_impact.csv` to estimate national treatment costs and exposure reduction. Assumes 2 L/day water intake for exposure calculations. Maps national EP counts to annualized cost per EP from the Corona memo. Also calculates cost-effectiveness as dollars per nanogram of PFAS removed.
 
@@ -76,8 +93,8 @@ Key results: National annualized costs range from $3,396M at 4 ng/L down to $109
 |---|---|---|
 | `ucmr5_pfoa_pfos.csv` | `01_filter_clean.ipynb` | Cleaned PFOA/PFOS sample data |
 | `ep_table.csv` | `02_analysis.ipynb` | Entry point summary with population |
-| `final_national_impact.csv` | `04_scaling.ipynb` | National scaling estimates by threshold |
-| Cost and exposure tables | `03_cost_risk_treatment_analysis.ipynb` | Treatment costs and exposure reduction |
+| `final_national_impact.csv` | `03_scaling.ipynb` | National scaling estimates by threshold |
+| Cost and exposure tables | `04_cost_risk_treatment_analysis.ipynb` | Treatment costs and exposure reduction |
 
 ## Dependencies
 
